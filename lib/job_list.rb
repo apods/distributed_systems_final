@@ -1,6 +1,10 @@
+# This is the JobList class.  Its job is to parse a list of jobs and their
+# associated delays, then add them to the queue after the specified delay.
+# When a job arrives it fires off a message to the supervisory controller
+# so that it can estimate the job arrival rate.
+
 class JobList
-  
-  
+
   def initialize(file)
     # Read in the server profiles
     @jobs = IO.readlines(file)
@@ -19,7 +23,6 @@ class JobList
     end
   end
   
-  
   def print_jobs
     puts "Job_num\t\tTime(ms)"
     for i in 0 .. @jobs.length - 1
@@ -31,8 +34,11 @@ class JobList
     end
   end
   
-  def execute(queue)
-    
+  def execute(job_count)
+    @jobs.each do |job|
+      sleep(job[1])
+      job_count[0] += 1
+    end
   end
 
 end
