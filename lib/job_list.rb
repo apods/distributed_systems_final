@@ -20,8 +20,8 @@ class JobList
   end
   
   
-  def print_servers
-    puts "Job_num\tTime(ms)"
+  def print_jobs
+    puts "Job_num\t\tTime(ms)"
     for i in 0 .. @jobs.length - 1
       for j in 0 .. @jobs[i].length - 1
         print @jobs[i][j]
@@ -29,6 +29,10 @@ class JobList
       end
       puts "\n"
     end
+  end
+  
+  def execute(queue)
+    
   end
 
 end

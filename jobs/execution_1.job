@@ -1,5 +1,5 @@
-Job_num   time_(ms)
-1            130
-2            100
-3            56
-4            295
+Job_num   delay_(ms)
+1            10
+2            10
+3            6
+4            12
