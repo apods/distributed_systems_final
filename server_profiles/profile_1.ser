@@ -1,0 +1,4 @@
+Server_ID On_Delay(Sec)  Run_Power_(Wh) Jobs_Time_(Sec)
+1           120                220         110
+2           100                230         103
+3            99                250         99
