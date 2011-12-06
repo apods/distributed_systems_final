@@ -34,6 +34,10 @@ class JobList
     end
   end
   
+  def num_jobs
+    @jobs.length
+  end
+  
   def execute(job_count)
     @jobs.each do |job|
       sleep(job[1])
