@@ -36,9 +36,10 @@ class Cluster
     end
   end
   
-  def execute
+  def execute(cluster_manager)
     @num_jobs.times do
-      sleep(@cm_servers.execute_rate)
+      puts "Execute Rate: #{cluster_manager.execute_rate}"
+      sleep(cluster_manager.execute_rate)
       jorb = @jobs.pop
       puts "Job #{jorb[0]} completed!"
     end

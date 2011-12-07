@@ -20,7 +20,7 @@ class ClusterManager
       @servers[i] << false       # Cell 2 determines whether the server is running
     end
     
-    @servers[0][2] = true        # The first server is set to run
+    @servers[0][4] = true        # The first server is set to run
     
     @cluster = nil
     
@@ -30,17 +30,21 @@ class ClusterManager
     max = max_server
     add_array = Array.[]()
     @servers.each do |server|
-      if server[2] == true
-        add_array << max[1].to_f/server[1]
+      if server[4] == true
+        add_array << max[3].to_f/server[3]
       end
     end
-    add_array.inject(:+).to_f/max[1]
+    su = 0
+    for i in 0 .. add_array.length - 1
+      su += add_array[i]
+    end
+    max[3].to_f/su
   end
   
   def max_server
     max = @servers[0]
     for i in 1 .. @servers.length - 1
-      if @servers[i][1] > max[1]
+      if @servers[i][2] > max[3] and @servers[i][4] == true
         max = @servers[i]
       end
     end

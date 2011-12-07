@@ -20,7 +20,7 @@ cluster.cluster= manager
 
 
 executor = Thread.new do
-  manager.execute
+  manager.execute(ClusterManager.new(filename))
 end
 
 
