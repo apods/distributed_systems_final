@@ -1,6 +1,6 @@
 require 'thread'
 
-class PowerAlgo
+class Cluster
   
   def initialize(cm_server_profile, num_jobs)
     @cm_servers = cm_server_profile   # object holding server information
