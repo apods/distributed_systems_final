@@ -19,7 +19,7 @@ class ClusterManager
   end
   
   def consume_rate
-    2
+    4
   end
   
   def print_servers

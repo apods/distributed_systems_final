@@ -23,20 +23,24 @@ class PowerAlgo
       @last_job_processed = Time.now
     end
     
-    check = (Time.now - @last_job_processed).to_i
-    if @cm_servers.consume_rate < check
-      check.floor.times do
-        completed = @jobs.pop
-        @last_job_processed = Time.now
-        puts "Finished serving job " + completed[0].to_s
-      end
+    if false #dummied out code
+        puts "skip"
+        check = (Time.now - @last_job_processed).to_i
+        if @cm_servers.consume_rate < check
+          check.floor.times do
+            completed = @jobs.pop
+            @last_job_processed = Time.now
+            puts "Finished serving job " + completed[0].to_s
+          end
+        end
     end
   end
   
   def consume
-    sleep(4)
-    @jobs.pop
-    puts "JOB FIN!"
+    @num_jobs.times do
+      sleep(@cm_servers.consume_rate)
+      @jobs.pop
+    end
   end
   
   def average_arrival_rate          # calculate the rate of jobs entering system
