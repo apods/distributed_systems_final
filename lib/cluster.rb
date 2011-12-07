@@ -51,6 +51,7 @@ class Cluster
   def average_arrival_rate          # calculate the rate of jobs entering system
     sum = 0
     temparr = Array.[]()
+    @jobs.freeze
     @jobs.length.times do
       temparr << @jobs.pop
       sum += temparr[temparr.length - 1][1]
@@ -58,7 +59,7 @@ class Cluster
     temparr.each do |jorb|
       @jobs << jorb
     end
-    return sum/@jobs.length unless @jobs.length == 0
+    return sum/@jobs.length unless @jobs.empty?
     0
   end
   

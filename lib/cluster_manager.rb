@@ -30,10 +30,11 @@ class ClusterManager
     max = max_server
     add_array = Array.[]()
     @servers.each do |server|
-      add_array << max[1]/server[1] unless server[2] == false
+      if server[2] == true
+        add_array << max[1].to_f/server[1]
+      end
     end
-    puts add_array
-    add_array.inject(:+)/max[1]
+    add_array.inject(:+).to_f/max[1]
   end
   
   def max_server
@@ -43,7 +44,6 @@ class ClusterManager
         max = @servers[i]
       end
     end
-    
     max
   end
   
