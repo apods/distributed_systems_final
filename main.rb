@@ -14,20 +14,22 @@ filename2 = "./jobs/" + (ARGV[1] || "execution_1.job")
 # Initialize classes
 cluster = ClusterManager.new(filename)
 job_list = JobList.new(filename2)
-manager = Cluster.new(cluster, job_list.num_jobs)
+manager = Cluster.new cluster, job_list.num_jobs
+
+cluster.cluster= manager
 
 
-consumer = Thread.new do
-  manager.consume
+executor = Thread.new do
+  manager.execute
 end
 
 
 # Must go before execute method
-job_list.power=(manager)
+job_list.power= manager
 
 
 # Simulate the arrival of jobs to the queue
 job_list.execute(Array.[](0))
 
-consumer.join
+executor.join
 

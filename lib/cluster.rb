@@ -23,7 +23,7 @@ class Cluster
       @last_job_processed = Time.now
     end
     
-    if false #dummied out code
+    if nil
         puts "skip"
         check = (Time.now - @last_job_processed).to_i
         if @cm_servers.consume_rate < check
@@ -36,11 +36,16 @@ class Cluster
     end
   end
   
-  def consume
+  def execute
     @num_jobs.times do
-      sleep(@cm_servers.consume_rate)
-      @jobs.pop
+      sleep(@cm_servers.execute_rate)
+      jorb = @jobs.pop
+      puts "Job #{jorb[0]} completed!"
     end
+  end
+  
+  def send
+    "MESSAGE!"
   end
   
   def average_arrival_rate          # calculate the rate of jobs entering system
@@ -53,7 +58,8 @@ class Cluster
     temparr.each do |jorb|
       @jobs << jorb
     end
-    sum/@jobs.length
+    return sum/@jobs.length unless @jobs.length == 0
+    0
   end
   
 end

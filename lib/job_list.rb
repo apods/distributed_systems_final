@@ -44,6 +44,7 @@ class JobList
   def execute(job_count)
     @jobs.each do |job|
       sleep(job[1])
+      puts "Job #{job_count[0]} was sent!"
       @power.new_job(job_count[0])
       job_count[0] += 1
     end
