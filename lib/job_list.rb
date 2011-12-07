@@ -4,7 +4,9 @@
 # so that it can estimate the job arrival rate.
 
 class JobList
-
+  
+  attr_accessor :power
+  
   def initialize(file)
     # Read in the server profiles
     @jobs = IO.readlines(file)
@@ -21,6 +23,7 @@ class JobList
       end
       
     end
+    @power = nil
   end
   
   def print_jobs
@@ -41,6 +44,7 @@ class JobList
   def execute(job_count)
     @jobs.each do |job|
       sleep(job[1])
+      @power.new_job(job_count[0])
       job_count[0] += 1
     end
   end
