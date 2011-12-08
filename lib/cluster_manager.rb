@@ -43,6 +43,14 @@ class ClusterManager
     max[3].to_f/su
   end
   
+  def server_on(id)
+    @servers[id-1][4] = true
+  end
+  
+  def server_off(id)
+    @servers[id-1][4] = false
+  end
+  
   def max_server
     max = @servers[0]
     for i in 1 .. @servers.length - 1

@@ -1,4 +1,4 @@
-# This is the main file that runs the simulator, any other Ruby files are
+# This is the main file that starts the simulator, any other Ruby files are
 # organized in the lib folder in this directory
 
 $LOAD_PATH << './lib'
@@ -20,8 +20,9 @@ manager = Cluster.new cluster, job_list.num_jobs, power_algo
 
 cluster.cluster= manager
 power_algo.server_list= cluster.servers
+power_algo.cluster_manager= cluster
 
-
+# Simulates the cluster completing a job, goes in its own thread
 executor = Thread.new do
   manager.execute(ClusterManager.new(filename))
 end
@@ -34,5 +35,6 @@ job_list.power= manager
 # Simulate the arrival of jobs to the queue
 job_list.execute(Array.[](0))
 
+# Make sure the cluster job completion simulator finishes
 executor.join
 

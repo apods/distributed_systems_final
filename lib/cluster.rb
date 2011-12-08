@@ -18,7 +18,7 @@ class Cluster
     @last_arrival = arrival_time
     
     @jobs << Array.[](id, gap, Time.now)
-    @power_algo.rate_update @rate = average_arrival_rate
+    @power_algo.rate_update @rate = average_arrival_rate, cluster_manager.execute_rate
     puts "Rate: #{@rate}"
     if id == 1
       @last_job_processed = Time.now
@@ -37,7 +37,8 @@ class Cluster
     end
   end
   
-  def execute(cluster_manager)
+  def execute(cluster_manager)          # Executed in a separate thread,
+                                        # simulates cluster completing a job
     @num_jobs.times do
       puts "Execute Rate: #{cluster_manager.execute_rate}"
       sleep(cluster_manager.execute_rate)
