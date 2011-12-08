@@ -6,17 +6,20 @@ require "thread"
 require "cluster_manager"
 require "job_list"
 require "cluster"
+require "power_algo"
 
 # Grab cluster profile and a list of jobs to execute
 filename = "./server_profiles/" + (ARGV[0] || "profile_1.ser")
 filename2 = "./jobs/" + (ARGV[1] || "execution_1.job")
 
 # Initialize classes
-cluster = ClusterManager.new(filename)
-job_list = JobList.new(filename2)
-manager = Cluster.new cluster, job_list.num_jobs
+power_algo = PowerAlgo.new
+cluster = ClusterManager.new filename
+job_list = JobList.new filename2
+manager = Cluster.new cluster, job_list.num_jobs, power_algo
 
 cluster.cluster= manager
+power_algo.server_list= cluster.servers
 
 
 executor = Thread.new do

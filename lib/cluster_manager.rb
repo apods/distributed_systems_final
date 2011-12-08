@@ -1,4 +1,6 @@
 class ClusterManager
+
+  attr_reader :servers
   
   def initialize file
     # Read in the server profiles
