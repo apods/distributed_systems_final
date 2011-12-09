@@ -1,4 +1,4 @@
 Server_ID On_Delay(mSec)  Run_Power_(Wh) Jobs_Time_(mSec)
-1           120000                220         3
-2           100000                230         103
-3            99000                250         99
+1           120                220         75
+2            80                230         103
+3            50               250         99

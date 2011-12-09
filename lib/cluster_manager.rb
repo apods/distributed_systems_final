@@ -91,6 +91,10 @@ class ClusterManager
   end
   
   def get_off
+    @servers.collect { |server| server unless server[4] == true }.compact
+  end
+  
+  def get_on
     @servers.collect { |server| server unless server[4] == false }.compact
   end
   
@@ -117,6 +121,25 @@ class ClusterManager
       end
     end
     min
+  end
+  
+  def max_power
+    max = @servers[0]
+    for i in 1 .. @servers.length - 1
+      if @servers[i][2] > max[2] and @servers[i][4] == true
+        max = @servers[i]
+      end
+    end
+    max
+  end
+  
+  def only server_id
+    @servers.each do |server|
+      if server[0] != server_id and server[4] == true
+        false
+      end
+    end
+    true
   end
 
 end

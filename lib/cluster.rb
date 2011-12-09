@@ -41,7 +41,7 @@ class Cluster
                                         # simulates cluster completing a job
     @num_jobs.times do
       puts "Execute Rate: #{cluster_manager.execute_rate}"
-      sleep(cluster_manager.execute_rate)
+      sleep(cluster_manager.execute_rate/1000)
       jorb = @jobs.pop
       puts "Job #{jorb[0]} completed!"
     end
