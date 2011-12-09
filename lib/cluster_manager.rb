@@ -43,6 +43,21 @@ class ClusterManager
     max[3].to_f/su
   end
   
+  def execute_rate2 servers
+    max = max_server2 servers
+    add_array = Array.[]()
+    servers.each do |server|
+      if server[4] == true
+        add_array << max[3].to_f/server[3]
+      end
+    end
+    su = 0
+    for i in 0 .. add_array.length - 1
+      su += add_array[i]
+    end
+    max[3].to_f/su
+  end
+  
   def server_on(id)
     @servers[id-1][4] = true
   end
@@ -61,8 +76,22 @@ class ClusterManager
     max
   end
   
+  def max_server2 servers
+    max = servers[0]
+    for i in 1 .. servers.length - 1
+      if servers[i][2] > max[3] and servers[i][4] == true
+        max = servers[i]
+      end
+    end
+    max
+  end
+  
   def cluster= cluster
     @cluster = cluster
+  end
+  
+  def get_off
+    @servers.collect { |server| server unless server[4] == false }.compact
   end
   
   def print_servers

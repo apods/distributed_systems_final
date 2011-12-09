@@ -3,9 +3,9 @@ class PowerAlgo
   attr_writer :server_list, :cluster_manager
   
   def initialize
-    @server_list = nil
+    @server_list = nil  # cluster.rb
     @execution_rate = 0
-    @cluster_manager = nil
+    @cluster_manager = nil # cluster_manager.rb
   end
   
   def rate_update(job_arrival_rate, execution_rate)
