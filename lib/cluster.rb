@@ -18,7 +18,7 @@ class Cluster
     @last_arrival = arrival_time
     
     @jobs << Array.[](id, gap, Time.now)
-    @power_algo.rate_update @rate = average_arrival_rate, cluster_manager.execute_rate
+    @power_algo.rate_update @rate = average_arrival_rate, @cm_servers.execute_rate
     puts "Rate: #{@rate}"
     if id == 1
       @last_job_processed = Time.now

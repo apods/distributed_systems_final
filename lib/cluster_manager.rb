@@ -54,7 +54,7 @@ class ClusterManager
   def max_server
     max = @servers[0]
     for i in 1 .. @servers.length - 1
-      if @servers[i][2] > max[3] and @servers[i][4] == true
+      if @servers[i][3] > max[3] and @servers[i][4] == true
         max = @servers[i]
       end
     end
@@ -74,6 +74,20 @@ class ClusterManager
       end
       puts "\n"
     end
+  end
+  
+  def time_on id
+    @servers[id][1]
+  end
+  
+  def min_power
+    min = @servers[0]
+    for i in 1 .. @servers.length - 1
+      if @servers[i][2] > min[2] and @servers[i][4] == false
+        min = @servers[i]
+      end
+    end
+    min
   end
 
 end
